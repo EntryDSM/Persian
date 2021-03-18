@@ -35,5 +35,6 @@ jobs:
 
       - name: Next Build
         run: yarn build
+        working-directory: ./web-app
 
       # - name: Docker Build
