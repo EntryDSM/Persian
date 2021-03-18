@@ -1,6 +1,6 @@
 import { css, keyframes } from '@emotion/react';
 
-const skeleton = keyframes`
+const getSkeletonAnimation = (width: string) => keyframes`
   0% {
     background-position-x: -90px;
   }
@@ -8,7 +8,7 @@ const skeleton = keyframes`
     background-position-x: 0;
   }
   40%, 100% {
-    background-position-x: 100vw; 
+    background-position-x: ${width};
   }
 `;
 
@@ -23,7 +23,6 @@ export function Skeleton({ width, children, on }: Props) {
     <div
       css={[
         css`
-          width: 100%;
           background-image: linear-gradient(
             90deg,
             #e0e0e0 0px,
@@ -34,7 +33,7 @@ export function Skeleton({ width, children, on }: Props) {
         `,
         on &&
           css`
-            animation: ${skeleton} 2s infinite ease-out;
+            animation: ${getSkeletonAnimation(width)} 2s infinite ease-out;
           `,
       ]}
     >
