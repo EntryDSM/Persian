@@ -1,0 +1,28 @@
+{
+  "name": "init-webapp",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@emotion/babel-plugin": "^11.2.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "next": "latest",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-slick": "^0.28.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "@types/react-slick": "^0.23.4",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "typescript": "4.0"
+  },
+  "license": "MIT"
+}
