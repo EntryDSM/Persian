@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "@emotion/babel-plugin",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@components": "./components",
+          "@assets": "./assets",
+          "@utils": "./utils"
+        },
+        "extensions": [".ts", ".tsx"]
+      }
+    ]
+  ]
+}
