@@ -1,12 +1,13 @@
-import { css } from '@emotion/react';
+import { css, Interpolation, Theme } from '@emotion/react';
 
 type Props = {
   children: React.ReactNode;
   x?: boolean;
   y?: boolean;
+  style?: Interpolation<Theme>;
 };
 
-export function ScrolllLayout({ children, x, y }: Props) {
+export function ScrolllLayout({ children, x, y, style }: Props) {
   return (
     <div
       css={[
@@ -25,6 +26,7 @@ export function ScrolllLayout({ children, x, y }: Props) {
           overflow-x: ${x ? 'scroll' : 'hidden'};
           overflow-y: ${y ? 'scroll' : 'hidden'};
         `,
+        style,
       ]}
     >
       {children}
