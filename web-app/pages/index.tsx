@@ -11,14 +11,14 @@ export default function HomePage() {
       <Banner />
       <div
         css={css`
-          padding-left: 10px;
+          padding-left: 20px;
           display: flex;
           flex-direction: column;
         `}
       >
-        <ContentList />
-        <ContentList />
-        <ContentList />
+        <ContentList hasDivideLine={true} />
+        <ContentList hasDivideLine={true} />
+        <ContentList hasDivideLine={false} />
       </div>
     </ScrolllLayout>
   );

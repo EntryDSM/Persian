@@ -4,8 +4,10 @@ const thumbnailSize = `calc(100vw / 3 - 10px)`;
 
 export const ContentItemWrapper = styled.article`
   width: ${thumbnailSize};
-  margin-right: 10px;
+  margin-right: 20px;
   padding-bottom: 24px;
+
+  display: inline-block;
 
   > div > div {
     width: ${thumbnailSize};

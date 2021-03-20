@@ -12,12 +12,8 @@ export const ContentListWrapper = styled.article`
     margin-bottom: 8px;
   }
 
-  > div {
-    display: flex;
-  }
-
   > hr {
     border: 0.5px solid #d7d7d7;
-    margin-right: 10px;
+    margin-right: 20px;
   }
 `;

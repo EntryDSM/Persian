@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const BannerSection = styled.section`
+  width: 100vw;
+  height: 39vw;
   margin-bottom: 9px;
   position: relative;
 `;
@@ -14,7 +16,7 @@ export const BannerImage = styled.div<BannerImageProps>`
   height: 39vw;
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
-  background-position: 50%, 50%;
+  background-position: center, center;
   background-size: cover;
 `;
 
