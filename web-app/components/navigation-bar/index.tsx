@@ -19,6 +19,7 @@ export function NavigationBar() {
 
     return pages.map(({ link, text }) => (
       <S.ButtonWrapper
+        key={link}
         css={
           pathname === link &&
           css`
