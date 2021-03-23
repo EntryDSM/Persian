@@ -31,7 +31,7 @@
 - 현재 [https://init.entrydsm.hs.kr](https://init.entrydsm.hs.kr)에서 이용 가능합니다.
 - 대덕소프트웨어마이스터고등학교 내부에서 하는 활동들을 외부 사람들에게 공유하는 커뮤니티 웹앱
 
-#### v 1.0.0
+#### v1.0.0
 
 - 게시글
   - 카테고리 별 리스트 조회
@@ -59,6 +59,26 @@
   ![space](https://resources.jetbrains.com/storage/products/space/img/meta/logo.png)
 
 ## 규칙
+
+### Git Branch Naming
+
+- master // 
+- development // 개발
+- feature
+  - <ISSUE-UNIQUE-ID>
+  - ENTRYINIT-T-5
+- release
+  - v1.0.0
+
+### Git Commit Message
+
+- <ISSUE-UNIQUE-ID> <ISSUE-SUMMARY> <description>
+  - ENTRYINIT-T-5 프로젝트 세팅
+  - ISSUE-UNIQUE-ID: 스페이스에서 생성한 이슈 고유번호
+  - ISSUE-SUMMARY: 스페이스에서 생성한 이슈 서머리
+  - description: 부가 설명
+- <decription>
+  - 이슈와는 관련이 없는데 파일이 수정되었을때 사용한다.
 
 ### HTML
 
@@ -115,6 +135,8 @@
 │     └─ <컴포넌트명, Header>
 │        ├─ style.ts
 │        └─ index.tsx
+├─ hooks
+│  └─ domain // 
 ├─ layouts
 │  └─ <PasCal Case, MobileLayout.tsx>
 ├─ mock
