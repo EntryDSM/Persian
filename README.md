@@ -136,7 +136,7 @@
 │        ├─ style.ts
 │        └─ index.tsx
 ├─ hooks
-│  └─ domain // 
+│  └─ domain // 비지니스 로직
 ├─ layouts
 │  └─ <PasCal Case, MobileLayout.tsx>
 ├─ mock
