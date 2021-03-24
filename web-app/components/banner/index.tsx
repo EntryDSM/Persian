@@ -1,39 +1,39 @@
-import { Skeleton } from '@components/skeleton-ui/Skeleton';
-import { useState } from 'react';
-import Slider from 'react-slick';
+import { Skeleton } from '@components/Skeleton';
 
 import * as S from './style';
 
-export function Banner() {
-  const [bannerIndex, setBannerIndex] = useState(0);
-  const onAfterBannerChange = (index: number) => {
-    setBannerIndex(index);
-  };
+import { useBanner } from 'hooks/domain/useBanner';
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    arrows: false,
-    afterChange: onAfterBannerChange,
-  };
+import { Banner as BannerType } from 'mock/banners';
+import { useMemo } from 'react';
+
+type Props = {
+  banners: BannerType[];
+};
+
+export function Banner({ banners }: Props) {
+  const [sliderRef, currentSlide] = useBanner();
+
+  const bannerList = useMemo(
+    () =>
+      banners.map((banner) => (
+        <div className='keen-slider__slide' key={banner.id}>
+          <Skeleton on={!banner.bannerUrl}>
+            <S.BannerImage className='banner--image' src={banner.bannerUrl} />
+          </Skeleton>
+        </div>
+      )),
+    [banners]
+  );
 
   return (
     <S.BannerSection>
-      <Slider {...settings}>
-        <Skeleton width='100vw' on={true}>
-          <S.BannerImage src='image/b.png' />
-        </Skeleton>
-        <Skeleton width='100vw' on={false}>
-          <S.BannerImage src='image/test.jpeg' />
-        </Skeleton>
-      </Slider>
-      <S.Indicator>{bannerIndex + 1} / 2 </S.Indicator>
+      <div ref={sliderRef} className='keen-slider'>
+        {bannerList}
+      </div>
+      <S.Indicator>
+        {currentSlide} / {banners.length}
+      </S.Indicator>
     </S.BannerSection>
   );
 }
-
-export default Banner;

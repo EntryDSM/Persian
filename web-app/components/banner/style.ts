@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 
 export const BannerSection = styled.section`
-  width: 100vw;
-  height: 39vw;
-  margin-bottom: 9px;
+  width: 100%;
+  height: fit-content;
   position: relative;
 `;
 
@@ -12,8 +11,8 @@ type BannerImageProps = {
 };
 
 export const BannerImage = styled.div<BannerImageProps>`
-  width: 100vw;
-  height: 39vw;
+  width: 100%;
+  padding-top: 39%;
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-position: center, center;
@@ -28,5 +27,9 @@ export const Indicator = styled.div`
   border-radius: 15px;
   font-size: 12px;
   font-weight: bold;
-  padding: 1px 3.5px;
+  padding: 1px 4px;
+  width: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #000000;
 `;
