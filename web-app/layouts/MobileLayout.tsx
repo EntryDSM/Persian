@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import { NavigationBar } from '@components/navigation-bar';
+import { NavigationBar } from '@components/NavigationBar';
 
 type Props = {
   children: React.ReactNode;
@@ -8,15 +8,15 @@ type Props = {
 
 export function MobileLayout({ children }: Props) {
   return (
-    <div
-      css={css`
-        position: relative;
-        width: 100%;
-        height: 100%;
-      `}
-    >
+    <MobileLayoutWrapper>
       {children}
       <NavigationBar />
-    </div>
+    </MobileLayoutWrapper>
   );
 }
+
+const MobileLayoutWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;

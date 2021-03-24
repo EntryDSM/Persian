@@ -1,4 +1,5 @@
-import { css, Interpolation, Theme } from '@emotion/react';
+import { Interpolation, Theme } from '@emotion/react';
+import styled from '@emotion/styled';
 
 type Props = {
   children: React.ReactNode;
@@ -9,27 +10,31 @@ type Props = {
 
 export function ScrolllLayout({ children, x, y, style }: Props) {
   return (
-    <div
-      css={[
-        css`
-          width: 100%;
-          height: 100%;
-
-          &::-webkit-scrollbar {
-            display: none;
-          }
-
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
-        `,
-        css`
-          overflow-x: ${x ? 'scroll' : 'hidden'};
-          overflow-y: ${y ? 'scroll' : 'hidden'};
-        `,
-        style,
-      ]}
-    >
+    <ScrollLayoutWrapper overflowX={x} overflowY={y} override={style}>
       {children}
-    </div>
+    </ScrollLayoutWrapper>
   );
 }
+
+type ScrollLayoutWrapperProps = {
+  overflowX?: boolean;
+  overflowY?: boolean;
+  override?: Interpolation<Theme>;
+};
+
+const ScrollLayoutWrapper = styled.div<ScrollLayoutWrapperProps>`
+  width: 100%;
+  height: 100%;
+
+  overflow-x: ${({ overflowX }) => (overflowX ? 'scroll' : 'visible')};
+  overflow-y: ${({ overflowY }) => (overflowY ? 'scroll' : 'visible')};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  ${({ override }) => override}
+`;
