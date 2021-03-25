@@ -24,6 +24,12 @@ const postOptions = [
     createdAt: '2021/03/23',
     writerName: '정우영',
   },
+  {
+    title: '마고 개발자의 하소연',
+    category: 'VLOG 🎥',
+    createdAt: '2021/03/25',
+    writerName: '오준상',
+  },
 ];
 
 const generatedPostsMock = files
