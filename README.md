@@ -73,12 +73,12 @@
 
 ### Git Commit Message
 
-- <ISSUE-UNIQUE-ID> <ISSUE-SUMMARY> <description>
+- `<ISSUE-UNIQUE-ID> <ISSUE-SUMMARY> <description>`
   - ENTRYINIT-T-5 프로젝트 세팅
   - ISSUE-UNIQUE-ID: 스페이스에서 생성한 이슈 고유번호
   - ISSUE-SUMMARY: 스페이스에서 생성한 이슈 서머리
   - description: 부가 설명
-- <decription>
+- `<decription>`
   - 이슈와는 관련이 없는데 파일이 수정되었을때 사용한다.
 
 ### HTML
