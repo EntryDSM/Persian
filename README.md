@@ -147,7 +147,7 @@
 │  └─ icons
 └─ utils
    ├─ api
-   ├─ context-api
+   ├─ contextAPI
    ├─ function
    └─ hook
 ```
