@@ -30,6 +30,7 @@
 
 - 현재 [https://init.entrydsm.hs.kr](https://init.entrydsm.hs.kr)에서 이용 가능합니다.
 - 대덕소프트웨어마이스터고등학교 내부에서 하는 활동들을 외부 사람들에게 공유하는 커뮤니티 웹앱
+- Skills: Next.js, TypeScript, Emotion, PWA, Docker, Github Actions
 
 #### v1.0.0
 
