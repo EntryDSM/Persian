@@ -61,9 +61,10 @@ type ThumbnailImageProps = {
 
 export const ThumbnailImage = styled.div<ThumbnailImageProps>`
   position: absolute;
-  background-image: url(${({ src }) => src});
+  top: 0;
   width: 100%;
   height: 100%;
-  top: 0;
+  background-image: url(${({ src }) => src});
+  background-repeat: no-repeat;
   background-position: center center;
 `;
