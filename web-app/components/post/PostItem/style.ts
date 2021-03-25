@@ -67,4 +67,5 @@ export const ThumbnailImage = styled.div<ThumbnailImageProps>`
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: cover;
 `;
