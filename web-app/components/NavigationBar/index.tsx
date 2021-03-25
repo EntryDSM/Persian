@@ -13,16 +13,24 @@ const pages = [
 export function NavigationBar() {
   const { pathname } = useRouter();
 
-  const pageButtons = useMemo(() => {
-    return pages.map(({ link, text }) => (
-      <S.ButtonWrapper
-        key={link}
-        active={'/' + pathname.split('/')[1] === link}
-      >
-        <Link href={link}>{text}</Link>
-      </S.ButtonWrapper>
-    ));
-  }, [pathname]);
+  const pageButtons = useMemo(
+    () => (
+      <S.NavigationBarWrapper>
+        {pages.map(({ link, text }) => {
+          const isCurrentPage = '/' + pathname.split('/')[1] === link;
 
-  return <S.NavigationBarWrapper>{pageButtons}</S.NavigationBarWrapper>;
+          return (
+            <S.ButtonWrapper key={link} active={isCurrentPage}>
+              <Link href={link}>
+                <a aria-current={isCurrentPage ? 'page' : 'false'}>{text}</a>
+              </Link>
+            </S.ButtonWrapper>
+          );
+        })}
+      </S.NavigationBarWrapper>
+    ),
+    [pathname]
+  );
+
+  return pageButtons;
 }
