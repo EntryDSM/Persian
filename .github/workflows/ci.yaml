@@ -37,4 +37,10 @@ jobs:
         run: yarn build
         working-directory: ./web-app
 
-      # - name: Docker Build
+      - name: Docker Build
+        run: |
+          docker build -t test .
+        working-directory: ./web-app
+        env:
+          USER_NAME: ${{ secrets.DOCKER_USERNAME }}
+          IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}

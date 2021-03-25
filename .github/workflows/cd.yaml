@@ -1,0 +1,35 @@
+name: cd
+on:
+  push:
+    branches:
+      - 'release/**'
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: CheckOut
+        uses: actions/checkout@v2
+        with:
+          repository: workout-log/back-end
+
+      - name: Login to Docker
+        run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build a Docker Image and Push a Docker Image
+        run: |
+          docker build -t ${USER_NAME}/${IMAGE_NAME}:1.0.0 . & docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0 .
+        working-directory: ./web-app
+        env:
+          USER_NAME: ${{ secrets.DOCKER_USERNAME }}
+          IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
+
+      - name: Push a Docker Image
+        run: docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0 .
+        working-directory: ./web-app
+        env:
+          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
