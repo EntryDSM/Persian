@@ -66,7 +66,7 @@
 - master // 
 - development // 개발
 - feature
-  - <ISSUE-UNIQUE-ID>
+  - `<ISSUE-UNIQUE-ID>`
   - ENTRYINIT-T-5
 - release
   - v1.0.0
