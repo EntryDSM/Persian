@@ -16,7 +16,7 @@ export const BannerImage = styled.div<BannerImageProps>`
   background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-position: center, center;
-  background-size: cover;
+  background-size: contain;
 `;
 
 export const Indicator = styled.div`

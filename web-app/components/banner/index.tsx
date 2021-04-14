@@ -4,8 +4,9 @@ import * as S from './style';
 
 import { useBanner } from 'hooks/domain/useBanner';
 
-import { Banner as BannerType } from 'mock/banners';
+import { Banner as BannerType } from 'mocks/banners';
 import { useMemo } from 'react';
+import Link from 'next/link';
 
 type Props = {
   banners: BannerType[];
@@ -17,11 +18,13 @@ export function Banner({ banners }: Props) {
   const bannerList = useMemo(
     () =>
       banners.map((banner) => (
-        <div className='keen-slider__slide' key={banner.id}>
-          <Skeleton on={!banner.bannerUrl}>
-            <S.BannerImage className='banner--image' src={banner.bannerUrl} />
-          </Skeleton>
-        </div>
+        <Link href={banner.link} passHref={true} key={banner.id}>
+          <a className='keen-slider__slide'>
+            <Skeleton on={!banner.bannerUrl}>
+              <S.BannerImage className='banner--image' src={banner.bannerUrl} />
+            </Skeleton>
+          </a>
+        </Link>
       )),
     [banners]
   );
