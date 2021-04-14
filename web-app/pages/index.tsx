@@ -7,12 +7,17 @@ import { css } from '@emotion/react';
 
 import { ScrolllLayout } from 'layouts/ScrollLayout';
 
+import { SEO } from '@components/SEO';
 import { PostList } from '@components/post/PostList';
 import { Banner } from '@components/Banner';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 
-import { posts, Post, Category } from 'mock/posts';
-import { Banner as BannerType, banners } from 'mock/banners';
+import { sortPostsByCategory } from '@utils/function/sortPostsByCategory';
+
+import { homePageInfo } from 'constances/pageInfo';
+
+import { posts as mockPost, Post } from 'mocks/posts';
+import { Banner as BannerType, banners } from 'mocks/banners';
 
 type Props = {
   banners: BannerType[];
@@ -29,7 +34,8 @@ export default function HomePage({ posts, banners }: Props) {
   );
 
   if (postsError) {
-    return alert(postsError);
+    alert(postsError);
+    return <h1>Error</h1>;
   }
 
   if (!postsData) {
@@ -45,7 +51,8 @@ export default function HomePage({ posts, banners }: Props) {
   );
 
   if (bannersError) {
-    return alert(bannersError);
+    alert(bannersError);
+    return <h1>Error</h1>;
   }
 
   if (!bannersData) {
@@ -53,23 +60,7 @@ export default function HomePage({ posts, banners }: Props) {
   }
 
   const mappedPosts = useMemo(() => {
-    const newPosts: Array<{ category: Category; items: Post[] }> = [];
-
-    posts.forEach((post) => {
-      let index = newPosts.findIndex((p) => p.category === post.category);
-
-      if (index === -1) {
-        index = newPosts.length;
-        newPosts[index] = {
-          category: post.category,
-          items: [],
-        };
-      }
-
-      newPosts[index].items.push(post);
-    });
-
-    return newPosts;
+    return sortPostsByCategory(posts);
   }, [posts]);
 
   const postList = useMemo(
@@ -87,10 +78,13 @@ export default function HomePage({ posts, banners }: Props) {
   );
 
   return (
-    <ScrolllLayout y={true} style={homePageStyle}>
-      <Banner banners={banners} />
-      <div>{postList}</div>
-    </ScrolllLayout>
+    <>
+      <SEO {...homePageInfo.seo} />
+      <ScrolllLayout y={true} style={homePageStyle}>
+        <Banner banners={banners} />
+        <div>{postList}</div>
+      </ScrolllLayout>
+    </>
   );
 }
 
@@ -107,7 +101,7 @@ export async function getServerSideProps(): Promise<
 > {
   return {
     props: {
-      posts: posts,
+      posts: mockPost,
       banners: banners,
     },
   };
