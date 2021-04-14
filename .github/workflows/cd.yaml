@@ -28,7 +28,7 @@ jobs:
           IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
 
       - name: Push a Docker Image
-        run: docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0 .
+        run: docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0
         working-directory: ./web-app
         env:
           USER_NAME: ${{ secrets.DOCKER_USERNAME }}
