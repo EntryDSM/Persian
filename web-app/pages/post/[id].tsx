@@ -97,6 +97,7 @@ export async function getServerSideProps({
     contentHTML,
     id,
     category,
+    description,
   } = posts[index];
 
   return {
@@ -110,6 +111,7 @@ export async function getServerSideProps({
         writerName,
         thumbnailUrl,
         contentHTML,
+        description,
       },
     },
   };
