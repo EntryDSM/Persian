@@ -13,7 +13,8 @@ type Props = {
 
 export function PostItem({ id, title, writerName, thumbnailUrl }: Props) {
   return (
-    <Link href={`/post/${id}`}>
+    // <Link href={`/post/${id}`}>
+    <Link href={'/post/[id]'} as={`/post/${id}`} passHref={true}>
       <S.PostItemLink>
         <S.PostItemWrapper>
           <Skeleton on={thumbnailUrl ? false : true} style={S.skeletonStyle}>

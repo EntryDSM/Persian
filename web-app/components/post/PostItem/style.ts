@@ -53,6 +53,7 @@ export const PostItemWrapper = styled.section`
 export const skeletonStyle = css`
   border-radius: 6px;
   display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 type ThumbnailImageProps = {
