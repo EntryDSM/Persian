@@ -31,5 +31,5 @@ jobs:
         run: docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0 .
         working-directory: ./web-app
         env:
-          USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          USER_NAME: ${{ secrets.DOCKER_USERNAME }}
           IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
