@@ -21,7 +21,7 @@ jobs:
 
       - name: Build a Docker Image and Push a Docker Image
         run: |
-          docker build -t ${USER_NAME}/${IMAGE_NAME}:1.0.0 . & docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0 .
+          docker build -t ${USER_NAME}/${IMAGE_NAME}:1.0.0 . & docker push ${USER_NAME}/${IMAGE_NAME}:1.0.0
         working-directory: ./web-app
         env:
           USER_NAME: ${{ secrets.DOCKER_USERNAME }}
