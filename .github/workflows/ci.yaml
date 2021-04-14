@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
+        with:
+          repository: EntryDSM/Persian
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1

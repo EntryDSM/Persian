@@ -11,7 +11,7 @@ jobs:
       - name: CheckOut
         uses: actions/checkout@v2
         with:
-          repository: workout-log/back-end
+          repository: EntryDSM/Persian
 
       - name: Login to Docker
         run: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
