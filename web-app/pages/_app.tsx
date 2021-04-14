@@ -28,7 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <title>INIT</title>
         <meta
           name='viewport'
-          content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'
+          content='viewport-fit=cover,initial-scale=1,maximum-scale=1,user-scalable=no'
         />
         <noscript>You should use javascript</noscript>
       </Head>
@@ -78,7 +78,7 @@ const globalStyle = css`
     max-width: 500px;
     margin: 0 auto;
     background-color: #ffffff;
-    height: calc(100vh - 50px);
+    height: 100vh;
   }
 
   a {
