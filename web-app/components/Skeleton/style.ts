@@ -45,7 +45,6 @@ export const SkeletonWrapper = styled.div<SkeletonWrapperProps>`
               #c4c4c4 60px
             );
             border-radius: 6px;
-
             animation: 2s ${skeletonAnimation} infinite linear;
           }
         `

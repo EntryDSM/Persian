@@ -2,7 +2,7 @@ import { Interpolation, Theme } from '@emotion/react';
 import * as S from './style';
 
 type Props = {
-  children: React.ReactNode;
+  children: JSX.Element;
   on: boolean;
   style?: Interpolation<Theme>;
 };
@@ -10,7 +10,6 @@ type Props = {
 export function Skeleton({ children, on, style }: Props) {
   return (
     <S.SkeletonWrapper isOn={on} override={style}>
-      <div css></div>
       {children}
     </S.SkeletonWrapper>
   );
