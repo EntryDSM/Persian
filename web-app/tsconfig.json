@@ -19,6 +19,8 @@
     "target": "esnext",
     "baseUrl": "./",
     "paths": {
+      "@pages/*": ["./pages/*"],
+      "@mocks/*": ["./mocks/*"],
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
       "@utils/*": ["./utils/*"]

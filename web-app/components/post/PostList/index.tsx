@@ -6,7 +6,7 @@ import { PostItem } from '../PostItem';
 
 import * as S from './style';
 
-import { Category, Post } from 'mock/posts';
+import { Category, Post } from 'mocks/posts';
 
 type Props = {
   category: Category;
