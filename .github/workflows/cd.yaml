@@ -19,7 +19,7 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build a Docker Image and Push a Docker Image
+      - name: Build a Docker Image
         run: |
           docker build -t ${USER_NAME}/${IMAGE_NAME}:1.0.0 .
         working-directory: ./web-app
