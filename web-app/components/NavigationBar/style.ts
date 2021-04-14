@@ -1,14 +1,15 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const NavigationBarWrapper = styled.nav`
   max-width: 500px;
   position: fixed;
-  bottom: 0;
+  bottom: calc(constant(safe-area-inset-bottom) + 0px);
+  bottom: calc(env(safe-area-inset-bottom) + 0px);
   width: 100%;
-  height: 200px;
-  background-color: blue;
   display: flex;
   height: 50px;
+  box-sizing: border-box;
   background-color: #ffffff;
   box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.1);
 `;
@@ -23,16 +24,17 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${({ active }) => (active ? '#c7c7f9' : '#ffffff')};
+  background-color: #ffffff;
   position: relative;
 
   > a {
+    position: relative;
     color: #000000;
     display: block;
     height: 100%;
     width: 100%;
     text-align: center;
-    padding: 14px 0;
+    padding: 4px 0;
 
     :active::before {
       content: '';
@@ -42,6 +44,36 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    > div {
+      height: 30px;
+      overflow: hidden;
+
+      ${({ active }) =>
+        active &&
+        css`
+          > svg {
+            transition: 0.3s;
+            transform: translateY(-30px);
+            &:last-child {
+              color: #222222 !important;
+            }
+          }
+        `}
+      
+      }
+
+      > span {
+        color: ${({ active }) => (active ? '#222222' : '#bbbbbb')};
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        font-size: 12px;
+        position: absolute;
+        text-align: center;
+        bottom: 4px;
+      }
     }
   }
 `;
