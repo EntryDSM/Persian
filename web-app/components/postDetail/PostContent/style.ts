@@ -28,5 +28,6 @@ export const PostContentWrapper = styled.div`
     width: 100%;
     margin: 8px 0;
     height: auto;
+    box-shadow: 0px 2px 8px rgb(0 0 0 / 20%);
   }
 `;

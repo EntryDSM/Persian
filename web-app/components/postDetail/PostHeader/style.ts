@@ -23,18 +23,3 @@ export const PostHeaderWrapper = styled.header`
     }
   }
 `;
-
-type ThumbnailImageProps = {
-  src: string;
-};
-
-export const ThumbnailImage = styled.div<ThumbnailImageProps>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  background-image: url(/${({ src }) => src});
-  background-color: black;
-  background-repeat: no-repeat;
-  background-position: center center;
-`;
