@@ -11,13 +11,13 @@ export const homePageInfo: PageInfo = {
   url: '/',
   seo: {
     title: 'HOME',
-    description: '대덕소프트웨어마이스터고등학교 홍보 커뮤니티',
+    description: '대덕소프트웨어마이스터고등학교 커뮤니티',
     ogTitle: 'INIT',
-    ogDescription: '대덕소프트웨어마이스터고등학교 홍보 커뮤니티',
+    ogDescription: '대덕소프트웨어마이스터고등학교 커뮤니티',
     ogUrl: domain,
     ogImage: `${domain}/images/logo.svg`,
     author: 'EntryDSM',
-    keywords: ['대덕소프트웨어마이스터고등학교'],
+    keywords: ['대덕소프트웨어마이스터고등학교', '대덕', '소프트웨어마이스터고등학교', '커뮤니티'],
   },
 };
 
