@@ -10,7 +10,7 @@ type PageInfo = {
 export const homePageInfo: PageInfo = {
   url: '/',
   seo: {
-    title: 'HOME',
+    title: '대덕소프트웨어마이스터고등학교',
     description: '대덕소프트웨어마이스터고등학교 홍보 커뮤니티',
     ogTitle: 'INIT',
     ogDescription: '대덕소프트웨어마이스터고등학교 홍보 커뮤니티',
