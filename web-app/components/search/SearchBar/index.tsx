@@ -1,31 +1,13 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-
 import * as S from './style';
 
-import { useSearch } from 'hooks/domain/useSearch';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
+import { useSearch } from '@hooks/domain/useSearch';
 
 import { useSearchHistory } from '@utils/contextAPI/searchHistory';
 
-import { Category, Post, posts } from '@mocks/posts';
-
-const newPosts: Array<{ category: Category; items: Post[] }> = [];
-
-posts.forEach((post) => {
-  let index = newPosts.findIndex((p) => p.category === post.category);
-
-  if (index === -1) {
-    index = newPosts.length;
-    newPosts[index] = {
-      category: post.category,
-      items: [],
-    };
-  }
-
-  newPosts[index].items.push(post);
-});
-
 export function SearchBar() {
-  const [changeSearchQueryUrl] = useSearch();
+  const [, changeSearchQueryUrl] = useSearch();
   const { addSearchHistory } = useSearchHistory();
 
   const [searchWord, setSearchWord] = useState<string>('');

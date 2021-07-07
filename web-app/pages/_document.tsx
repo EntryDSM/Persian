@@ -11,16 +11,6 @@ export default class MyDocument extends Document {
           <meta charSet='utf-8' />
           <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
           <link
-            rel='icon'
-            type='image/x-icon'
-            href='https://d1unjqcospf8gs.cloudfront.net/favicon.ico'
-          />
-          <link
-            rel='shortcut icon'
-            type='image/x-icon'
-            href='https://d1unjqcospf8gs.cloudfront.net/favicon.ico'
-          />
-          <link
             href='https://fonts.googleapis.com/earlyaccess/notosanskr.css'
             rel='stylesheet'
           />

@@ -6,25 +6,20 @@ import { PostItem } from '../PostItem';
 
 import * as S from './style';
 
-import { Category, Post } from 'mocks/posts';
+import { Posts } from '@models/post/Posts';
+import { Category } from '@models/post/Category';
 
 type Props = {
   category: Category;
-  posts: Post[];
+  posts: Posts;
   hasDivideLine: boolean;
 };
 
 export function PostList({ category, posts, hasDivideLine }: Props) {
   const postList = useMemo(
     () =>
-      posts.map((post: Post) => (
-        <PostItem
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          writerName={post.writerName}
-          thumbnailUrl={post.thumbnailUrl}
-        />
+      posts.map((post: Posts[number]) => (
+        <PostItem key={post.id} post={post} />
       )),
     [posts]
   );

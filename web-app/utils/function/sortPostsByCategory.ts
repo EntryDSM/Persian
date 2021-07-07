@@ -1,27 +1,22 @@
-import { Category, Post } from '../../mocks/posts';
+import { Posts } from '@models/post/Posts';
+import { Category } from '@models/post/Category';
 
-export function sortPostsByCategory(posts: Post[]) {
-  const sortedPosts: Array<{ category: Category; items: Post[] }> = [];
+export function sortPostsByCategory(posts: Posts) {
+  const sortedPosts: Array<{ category: Category; items: Posts }> = [];
 
-  posts
-    .sort(
-      (post1, post2) =>
-        Number(post2.createdAt.split('/').join('')) -
-        Number(post1.createdAt.split('/').join(''))
-    )
-    .forEach((post) => {
-      let index = sortedPosts.findIndex((p) => p.category === post.category);
+  posts.forEach((post) => {
+    let index = sortedPosts.findIndex((p) => p.category === post.category);
 
-      if (index === -1) {
-        index = sortedPosts.length;
-        sortedPosts[index] = {
-          category: post.category,
-          items: [],
-        };
-      }
+    if (index === -1) {
+      index = sortedPosts.length;
+      sortedPosts[index] = {
+        category: post.category,
+        items: [],
+      };
+    }
 
-      sortedPosts[index].items.push(post);
-    });
+    sortedPosts[index].items.push(post);
+  });
 
   return sortedPosts;
 }

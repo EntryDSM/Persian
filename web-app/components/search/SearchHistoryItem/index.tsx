@@ -11,13 +11,13 @@ type Props = {
 };
 
 export function SearchHistoryItem({ searchWord }: Props) {
-  const [changeSearchQueryUrl] = useSearch();
+  const [, changeSearchQueryUrl] = useSearch();
 
   const { deleteSearchHistory } = useSearchHistory();
 
-  const searchPost = useCallback(() => {
+  const searchPost = () => {
     changeSearchQueryUrl(searchWord);
-  }, []);
+  };
 
   const onClickDeleteSearchHistory = useCallback((e: MouseEvent) => {
     e.stopPropagation();

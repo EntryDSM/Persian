@@ -1,27 +1,32 @@
-import Link from 'next/link';
-
-import { Skeleton } from '@components/Skeleton';
-
 import * as S from './style';
 
+import Link from 'next/link';
+
+import { Posts } from '@models/post/Posts';
+
+import { ImageWithSkeleton } from '@components/Skeleton/ImageWithSkeleton';
+
 type Props = {
-  id: number;
-  title: string;
-  writerName: string;
-  thumbnailUrl: string;
+  post: Posts[number];
 };
 
-export function PostItem({ id, title, writerName, thumbnailUrl }: Props) {
+export function PostItem({ post }: Props) {
+  const { id, title, writerName, thumbnailUrl } = post;
+
   return (
     // <Link href={`/post/${id}`}>
     <Link href={'/post/[id]'} as={`/post/${id}`} passHref={true}>
       <S.PostItemLink>
         <S.PostItemWrapper>
-          <Skeleton on={thumbnailUrl ? false : true} style={S.skeletonStyle}>
-            <div className='thumbnail--wrapper'>
-              <S.ThumbnailImage src={thumbnailUrl} />
-            </div>
-          </Skeleton>
+          <ImageWithSkeleton
+            style={S.skeletonStyle}
+            src={thumbnailUrl}
+            Image={({ src, onLoadImage }) => (
+              <div className='thumbnail--wrapper'>
+                <S.ThumbnailImage src={src} onLoad={onLoadImage} />
+              </div>
+            )}
+          />
           <div className='touchable'>
             <h3>{title}</h3>
             <p>{writerName}</p>

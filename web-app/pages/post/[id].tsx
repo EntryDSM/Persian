@@ -1,57 +1,71 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-
 import { useMemo } from 'react';
 
 import useSWR from 'swr';
 
-import { ScrolllLayout } from 'layouts/ScrollLayout';
+import { toast } from 'react-toastify';
+
+import { ScrolllLayout } from '@layouts/ScrollLayout';
 
 import { PostContent, PostHeader } from '@components/postDetail';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 import { SEO } from '@components/SEO';
 
-import { getPostDetailPageInfo } from 'constances/pageInfo';
+import { PostDetail } from '@models/post/PostDetail';
 
-import { Post, posts } from 'mocks/posts';
+import { getPostDetailPageInfo } from '@constances/pageInfo';
+
+import { getPost } from '@utils/api/post/post';
+import { CustomError } from '@utils/error/CustomError';
+
+import { getConfig } from '@config/config';
 
 export type PostPageProps = {
-  post: Post;
-  test: string;
+  id: number;
+  post: PostDetail;
+  error?: CustomError;
 };
 
-export default function PostPage({ post }: PostPageProps) {
-  const { data, error } = useSWR<Post>(`/post/${post.id}`, () => post, {
-    initialData: post,
-  });
-
+export default function PostPage({ id, post, error }: PostPageProps) {
   if (error) {
-    alert(error);
-    return <h1>Error</h1>;
+    toast.error(error.message);
   }
 
-  if (!data) {
+  const { data: postData, error: postError } = useSWR<PostDetail, CustomError>(
+    getConfig().endpoint.main.post.detail(id),
+    () => getPost(id),
+    {
+      initialData: post,
+    }
+  );
+
+  if (postError) {
+    toast.error(postError.message);
+  }
+
+  if (!postData) {
     return <LoadingSpinner />;
   }
 
   const {
-    id,
+    id: postId,
     title,
-    createdAt,
     description,
+    content,
+    image,
     writerName,
-    contentHTML,
-    thumbnailUrl,
-  } = data;
+    createdAt,
+  } = postData;
 
   const SEOProps = useMemo(() => {
     return getPostDetailPageInfo({
-      id,
+      id: postId,
       title,
       description,
-      thumbnailUrl,
+      thumbnailUrl: image.toString(),
       author: writerName,
     }).seo;
-  }, [data]);
+  }, [postData]);
 
   return (
     <>
@@ -59,10 +73,10 @@ export default function PostPage({ post }: PostPageProps) {
       <ScrolllLayout y={true}>
         <PostHeader
           title={title}
-          createdAt={createdAt}
+          createdAt={new Date(createdAt).toLocaleDateString()}
           writerName={writerName}
         />
-        <PostContent contentHTML={contentHTML} />
+        <PostContent contentHTML={content} />
       </ScrolllLayout>
     </>
   );
@@ -78,41 +92,47 @@ export async function getServerSideProps({
 }: GetServerSidePropsContext<QueryParams>): Promise<
   GetServerSidePropsResult<PostPageProps>
 > {
-  const index = posts.findIndex((post) => post.id === Number(params?.id));
-  const isNotFoundPost = index === -1;
+  const id = Number(params?.id);
 
-  if (isNotFoundPost) {
+  if (isNaN(id)) {
     return {
       notFound: true,
     };
   }
 
-  // console.log(req);
+  try {
+    const post = await getPost(Number(params?.id));
 
-  const {
-    title,
-    createdAt,
-    writerName,
-    thumbnailUrl,
-    contentHTML,
-    id,
-    category,
-    description,
-  } = posts[index];
-
-  return {
-    props: {
-      test: req ? 'req' : 'none',
-      post: {
-        id: id,
-        category,
-        title,
-        createdAt,
-        writerName,
-        thumbnailUrl,
-        contentHTML,
-        description,
+    return {
+      props: {
+        id,
+        post,
       },
-    },
-  };
+    };
+  } catch (_error) {
+    const error: CustomError = _error.response;
+    const { status } = error;
+
+    if (status === 404) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        id,
+        post: {
+          image: '',
+          id: 0,
+          content: '',
+          createdAt: new Date(),
+          description: '',
+          title: '',
+          writerName: '',
+        },
+        error,
+      },
+    };
+  }
 }

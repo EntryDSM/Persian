@@ -21,8 +21,13 @@
     "paths": {
       "@pages/*": ["./pages/*"],
       "@mocks/*": ["./mocks/*"],
+      "@layouts/*": ["./layouts/*"],
+      "@models/*": ["./models/*"],
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
+      "@config/*": ["./config/*"],
+      "@constances/*": ["./constances/*"],
+      "@hooks/*": ["./hooks/*"],
       "@utils/*": ["./utils/*"]
     },
     "types": ["@emotion/react/types/css-prop"]

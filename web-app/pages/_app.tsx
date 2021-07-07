@@ -5,6 +5,9 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { css, Global } from '@emotion/react';
 
 import { MobileLayout } from 'layouts/MobileLayout';
@@ -36,6 +39,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <GlobalProvider>
         <MobileLayout>
           <Component {...pageProps} />
+          <ToastContainer
+            position='bottom-right'
+            autoClose={30000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            pauseOnHover
+          />
         </MobileLayout>
       </GlobalProvider>
     </>

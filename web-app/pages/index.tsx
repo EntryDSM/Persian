@@ -1,58 +1,66 @@
 import { GetServerSidePropsResult } from 'next';
 import { useMemo } from 'react';
 
-import useSWR from 'swr';
-
 import { css } from '@emotion/react';
 
-import { ScrolllLayout } from 'layouts/ScrollLayout';
+import useSWR from 'swr';
+
+import { toast } from 'react-toastify';
+
+import { ScrolllLayout } from '@layouts/ScrollLayout';
 
 import { SEO } from '@components/SEO';
 import { PostList } from '@components/post/PostList';
 import { Banner } from '@components/Banner';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 
+import { Posts } from '@models/post/Posts';
+import { Banners } from '@models/Banners';
+
+import { homePageInfo } from '@constances/pageInfo';
+
 import { sortPostsByCategory } from '@utils/function/sortPostsByCategory';
+import { getBanners, getPosts } from '@utils/api/post/post';
+import { CustomError } from '@utils/error/CustomError';
 
-import { homePageInfo } from 'constances/pageInfo';
-
-import { posts as mockPost, Post } from 'mocks/posts';
-import { Banner as BannerType, banners } from 'mocks/banners';
+import { getConfig } from '@config/config';
 
 type Props = {
-  banners: BannerType[];
-  posts: Post[];
+  banners: Banners;
+  posts: Posts;
+  error?: CustomError;
 };
 
-export default function HomePage({ posts, banners }: Props) {
-  const { data: postsData, error: postsError } = useSWR<Post[]>(
-    '/posts',
-    () => posts,
+export default function HomePage({ posts, banners, error }: Props) {
+  if (error) {
+    toast.error(error.message);
+  }
+
+  const { data: postsData, error: postsError } = useSWR<Posts, CustomError>(
+    getConfig().endpoint.main.post.prefix,
+    getPosts,
     {
       initialData: posts,
     }
   );
 
   if (postsError) {
-    alert(postsError);
-    return <h1>Error</h1>;
+    toast.error(postsError.message);
   }
 
   if (!postsData) {
     return <LoadingSpinner />;
   }
 
-  const { data: bannersData, error: bannersError } = useSWR<BannerType[]>(
-    '/posts',
-    () => banners,
-    {
-      initialData: banners,
-    }
-  );
+  const { data: bannersData, error: bannersError } = useSWR<
+    Banners[],
+    CustomError
+  >(getConfig().endpoint.main.banner.prefix, () => banners, {
+    initialData: banners,
+  });
 
   if (bannersError) {
-    alert(bannersError);
-    return <h1>Error</h1>;
+    toast.error(bannersError.message);
   }
 
   if (!bannersData) {
@@ -99,10 +107,39 @@ const homePageStyle = css`
 export async function getServerSideProps(): Promise<
   GetServerSidePropsResult<Props>
 > {
-  return {
-    props: {
-      posts: mockPost,
-      banners: banners,
-    },
-  };
+  try {
+    const posts = await getPosts();
+    const banners = await getBanners();
+
+    return {
+      props: {
+        posts,
+        banners: [
+          {
+            id: 1,
+            bannerUrl: '/images/dsmBanner.png',
+            link: 'https://dsmhs.djsch.kr',
+          },
+        ].concat(
+          banners.postIds.map((id) => {
+            return {
+              id,
+              bannerUrl:
+                posts.find((post) => post.id === id)?.thumbnailUrl ?? '',
+              link: `/post/${id}`,
+            };
+          })
+        ),
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        posts: [],
+        banners: [],
+        error: error.response,
+      },
+    };
+  }
 }

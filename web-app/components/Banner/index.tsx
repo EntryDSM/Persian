@@ -1,15 +1,17 @@
-import { Skeleton } from '@components/Skeleton';
-
 import * as S from './style';
 
-import { useBanner } from 'hooks/domain/useBanner';
-
-import { Banner as BannerType } from 'mocks/banners';
-import { useMemo } from 'react';
 import Link from 'next/link';
 
+import { useMemo } from 'react';
+
+import { Skeleton } from '@components/Skeleton';
+
+import { Banners } from '@models/Banners';
+
+import { useBanner } from '@hooks/domain/useBanner';
+
 type Props = {
-  banners: BannerType[];
+  banners: Banners;
 };
 
 export function Banner({ banners }: Props) {
@@ -17,11 +19,11 @@ export function Banner({ banners }: Props) {
 
   const bannerList = useMemo(
     () =>
-      banners.map((banner) => (
-        <Link href={banner.link} passHref={true} key={banner.id}>
-          <a className='keen-slider__slide'>
-            <Skeleton on={!banner.bannerUrl}>
-              <S.BannerImage className='banner--image' src={banner.bannerUrl} />
+      banners.map(({ link, id, bannerUrl }) => (
+        <Link href={link} passHref={true} key={id}>
+          <a className='keen-slider__slide' target='_blank'>
+            <Skeleton on={!bannerUrl}>
+              <S.BannerImage className='banner--image' src={bannerUrl} />
             </Skeleton>
           </a>
         </Link>

@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState, RefObject } from 'react';
+import { useRef, useState, RefObject } from 'react';
+
+import { useUpdateEffect } from 'react-use';
 
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
@@ -18,7 +20,7 @@ export function useBanner(): UseBanner {
 
   const isDidMount = useRef(false);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (!isDidMount.current && slider) {
       isDidMount.current = true;
 

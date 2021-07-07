@@ -2,11 +2,10 @@
   "name": "init-webapp",
   "version": "1.0.0",
   "scripts": {
-    "dev": "yarn generate-mock-post && next",
-    "build": "yarn generate-mock-post && next build",
-    "start": "yarn generate-mock-post && next start",
-    "type-check": "tsc",
-    "generate-mock-post": "node ./mocks/mdGenerator.js"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
   },
   "dependencies": {
     "@babel/preset-react": "^7.12.13",
@@ -15,17 +14,21 @@
     "@emotion/styled": "^11.1.5",
     "@types/nprogress": "^0.2.0",
     "@types/react-icons": "^3.0.0",
+    "axios": "^0.21.1",
     "keen-slider": "^5.4.0",
     "markdown-js": "^0.0.4",
     "next": "latest",
     "next-pwa": "^5.0.6",
     "nprogress": "^0.2.0",
     "prettier": "^2.2.1",
+    "qs": "^6.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-slick": "^0.28.1",
     "react-spinners": "^0.10.6",
+    "react-toastify": "^7.0.4",
+    "react-use": "^17.2.4",
     "swr": "^0.5.4"
   },
   "devDependencies": {

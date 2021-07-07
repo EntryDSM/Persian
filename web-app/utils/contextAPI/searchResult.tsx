@@ -1,13 +1,19 @@
+import { useRouter } from 'next/router';
 import { createContext, useCallback, useEffect, useState } from 'react';
 
-import { Post, posts } from '@mocks/posts';
+import { mutate } from 'swr';
+
+import { Posts } from '@models/post/Posts';
+
+import { searchPost } from '@utils/api/search/search';
+
+import { getConfig } from '@config/config';
 
 import { ProviderProps } from './types';
 import { useExistContext } from './useExistContext';
-import { useRouter } from 'next/router';
 
 type SearchResultContextValue = {
-  searchResult: Post[] | null;
+  searchResult: Posts | null;
   findPostBySearchWord: (searchWord: string) => void;
 };
 
@@ -16,12 +22,12 @@ export const SearchResultContext = createContext<SearchResultContextValue | null
 );
 
 export function SearchResultProvider({ children }: ProviderProps) {
-  const [searchResult, setSearchResult] = useState<Post[] | null>([]);
+  const [searchResult, setSearchResult] = useState<Posts | null>([]);
 
-  const findPostBySearchWord = useCallback((searchWord: string) => {
-    const searchResult = posts.filter((post) =>
-      post.writerName.includes(searchWord)
-    );
+  const findPostBySearchWord = useCallback(async (searchWord: string) => {
+    const searchResult = await searchPost(searchWord);
+
+    mutate(getConfig().endpoint.main.search.withKeyword(searchWord));
 
     setSearchResult(searchResult.length > 0 ? searchResult : null);
   }, []);

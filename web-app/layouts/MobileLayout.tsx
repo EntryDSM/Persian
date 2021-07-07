@@ -1,23 +1,32 @@
 import styled from '@emotion/styled';
 
-import { NavigationBar } from '@components/NavigationBar';
 import { useEffect } from 'react';
 
+import { NavigationBar } from '@components/NavigationBar';
+
 type Props = {
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 export function MobileLayout({ children }: Props) {
   useEffect(() => {
-    document
-      .querySelector('#__next')
-      ?.setAttribute('style', `height: ${window.innerHeight}px`);
-    window.addEventListener('resize', () => {
-      document
-        .querySelector('#__next')
-        ?.setAttribute('style', `height: ${window.innerHeight}px`);
-    });
+    const nextjsRootElement = document.getElementById('__next');
+
+    if (nextjsRootElement) {
+      nextjsRootElement.setAttribute(
+        'style',
+        `height: ${window.innerHeight}px`
+      );
+
+      window.addEventListener('resize', () => {
+        nextjsRootElement.setAttribute(
+          'style',
+          `height: ${window.innerHeight}px`
+        );
+      });
+    }
   }, []);
+
   return (
     <MobileLayoutWrapper>
       {children}
