@@ -1,6 +1,6 @@
 import { PostDetail } from '@models/post/PostDetail';
 import { Posts } from '@models/post/Posts';
-import { Banners } from '@models/Banners';
+
 
 import { getConfig } from '@config/config';
 

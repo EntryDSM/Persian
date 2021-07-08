@@ -87,7 +87,7 @@ type QueryParams = {
 };
 
 export async function getServerSideProps({
-  req,
+
   params,
 }: GetServerSidePropsContext<QueryParams>): Promise<
   GetServerSidePropsResult<PostPageProps>

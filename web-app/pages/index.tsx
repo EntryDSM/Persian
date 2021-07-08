@@ -52,20 +52,18 @@ export default function HomePage({ posts, banners, error }: Props) {
     return <LoadingSpinner />;
   }
 
-  const { data: bannersData, error: bannersError } = useSWR<
-    Banners[],
-    CustomError
-  >(getConfig().endpoint.main.banner.prefix, () => banners, {
-    initialData: banners,
-  });
+  // const { data: bannersData, error: bannersError } = useSWR<
+  // { postIds: number[] },
+  //   CustomError
+  // >(getConfig().endpoint.main.banner.prefix,  getBanners);
+ 
+  // if (bannersError) {
+  //   toast.error(bannersError.message);
+  // }
 
-  if (bannersError) {
-    toast.error(bannersError.message);
-  }
-
-  if (!bannersData) {
-    return <LoadingSpinner />;
-  }
+  // if (!bannersData) {
+  //   return <LoadingSpinner />;
+  // }
 
   const mappedPosts = useMemo(() => {
     return sortPostsByCategory(posts);
