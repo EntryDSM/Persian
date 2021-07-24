@@ -11,7 +11,7 @@ export const getConfig = () => {
             return `${this.prefix}/${id}`;
           },
           best() {
-            return `${this.prefix}/best`;
+            return `${this.prefix}/recommend`;
           },
         },
         search: {
