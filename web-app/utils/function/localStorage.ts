@@ -10,7 +10,7 @@ export function setValueToLocalStorage(
   key: Key,
   value: LocalStorage[Key]
 ): void {
-  localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, value.toString());
 }
 
 export function getValueFromLocalStorage(key: Key): LocalStorage[Key] | null {
