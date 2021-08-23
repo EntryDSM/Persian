@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.1.5",
     "@types/nprogress": "^0.2.0",
     "@types/react-icons": "^3.0.0",
+    "@types/sanitize-html": "^2.3.2",
     "axios": "^0.21.1",
     "keen-slider": "^5.4.0",
     "markdown-js": "^0.0.4",
@@ -25,10 +26,14 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
+    "react-markdown": "^7.0.0",
     "react-slick": "^0.28.1",
     "react-spinners": "^0.10.6",
     "react-toastify": "^7.0.4",
     "react-use": "^17.2.4",
+    "rehype-raw": "^6.0.0",
+    "remark-gfm": "^2.0.0",
+    "sanitize-html": "^2.4.0",
     "swr": "^0.5.4"
   },
   "devDependencies": {

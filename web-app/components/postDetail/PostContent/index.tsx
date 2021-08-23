@@ -1,4 +1,5 @@
 import * as S from './style';
+import MarkdownRender from './MarkdownRender';
 
 type Props = {
   contentHTML: string;
@@ -6,6 +7,8 @@ type Props = {
 
 export function PostContent({ contentHTML }: Props) {
   return (
-    <S.PostContentWrapper dangerouslySetInnerHTML={{ __html: contentHTML }} />
-  );
+    <S.PostContentWrapper>
+      <MarkdownRender markdown={contentHTML}/>
+    </S.PostContentWrapper>
+  )
 }
