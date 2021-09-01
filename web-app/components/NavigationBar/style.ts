@@ -74,6 +74,14 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
         text-align: center;
         bottom: 4px;
       }
+
+      .icon {
+        width: 30px;
+        height: 30px;
+        color: #bbbbbb;
+        display: block;
+        margin: 0 auto;
+      }
     }
   }
 `;
