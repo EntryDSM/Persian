@@ -29,25 +29,25 @@ export function NavigationBar() {
                     <IconContext.Provider
                       value={{
                         size: '20px',
-                        style: {
-                          width: '30px',
-                          height: '30px',
-                          color: '#bbbbbb',
-                          display: 'block',
-                          margin: '0 auto',
-                        },
+                        // style: {
+                        //   width: '30px',
+                        //   height: '30px',
+                        //   color: '#bbbbbb',
+                        //   display: 'block',
+                        //   margin: '0 auto',
+                        // },
                       }}
                     >
                       {(link === '/' && (
                         <>
-                          <MdHome />
-                          <MdHome />
+                          <MdHome className='icon' />
+                          <MdHome className='icon' />
                         </>
                       )) ||
                         (link === '/search' && (
                           <>
-                            <MdSearch />
-                            <MdSearch />
+                            <MdSearch className='icon' />
+                            <MdSearch className='icon' />
                           </>
                         ))}
                     </IconContext.Provider>
