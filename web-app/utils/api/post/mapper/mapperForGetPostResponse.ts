@@ -17,7 +17,7 @@ export function mapperForGetPostResponse({
     title,
     writerName: author,
     createdAt: date,
-    content: `<img src="${imagePath}" />${content}`,
+    content: `<img src="${imagePath}" />\n\n${content}`,
     description,
   };
 

@@ -13,8 +13,7 @@ interface MarkdownRender{
 const MarkdownRender:FC<MarkdownRender> = ({markdown}) => {
   return(
     <Block>
-      <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[gfm]} components={{
-      }}>{filter(markdown)}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[gfm]} >{filter(markdown)}</ReactMarkdown>
     </Block>
   )
 }
@@ -59,7 +58,6 @@ function filter(html: string) {
       'img',
       'del',
       'input',
-
       ...katexWhitelist.tags,
     ],
     allowedAttributes: {
